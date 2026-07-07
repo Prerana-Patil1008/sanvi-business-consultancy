@@ -5,7 +5,6 @@ const { sendEmail } = require("../utils/sendEmail");
 // ======================================
 // Create Application
 // ======================================
-
 exports.createApplication = async (req, res) => {
   try {
     const files = req.files
@@ -22,26 +21,40 @@ exports.createApplication = async (req, res) => {
       documents: files,
     });
 
-    // Send Confirmation Email
+    // Send email without failing the API
     if (application.email) {
-      await sendEmail(
-        application.email,
-        "Application Submitted Successfully",
-        application
-      );
+      try {
+        await sendEmail(
+          application.email,
+          "Application Submitted Successfully",
+          application
+        );
+
+        console.log("Confirmation email sent.");
+      } catch (emailError) {
+        console.error(
+          "Email sending failed:",
+          emailError.message
+        );
+      }
     }
 
-    res.status(201).json(application);
+    return res.status(201).json({
+      success: true,
+      message: "Application submitted successfully.",
+      application,
+    });
 
   } catch (error) {
-    console.log(error);
+    console.error("Create Application Error:");
+    console.error(error);
 
-    res.status(500).json({
+    return res.status(500).json({
+      success: false,
       message: error.message,
     });
   }
 };
-
 // ======================================
 // Get All Applications
 // ======================================
