@@ -17,40 +17,39 @@ exports.getDashboard = async (req, res) => {
       Testimonial.find().sort({ createdAt: -1 }),
     ]);
 
-    // ==========================
-    // Dashboard Statistics
-    // ==========================
+    // Dashboard Stats
 
     const stats = {
       totalApplications: applications.length,
+
       totalCustomers: customers.length,
+
       totalMessages: contacts.length,
+
       totalTestimonials: testimonials.length,
 
       pending: applications.filter(
-        (app) => app.status === "Pending"
+        (a) => a.status === "Pending"
       ).length,
 
       processing: applications.filter(
-        (app) => app.status === "Processing"
+        (a) => a.status === "Under Review"
       ).length,
 
       approved: applications.filter(
-        (app) => app.status === "Approved"
-      ).length,
-
-      completed: applications.filter(
-        (app) => app.status === "Completed"
+        (a) => a.status === "Approved"
       ).length,
 
       rejected: applications.filter(
-        (app) => app.status === "Rejected"
+        (a) => a.status === "Rejected"
+      ).length,
+
+      completed: applications.filter(
+        (a) => a.status === "Completed"
       ).length,
     };
 
-    // ==========================
     // Monthly Applications
-    // ==========================
 
     const months = [
       "Jan",
@@ -72,14 +71,13 @@ exports.getDashboard = async (req, res) => {
         month,
         applications: applications.filter(
           (app) =>
-            new Date(app.createdAt).getMonth() === index
+            new Date(app.createdAt).getMonth() ===
+            index
         ).length,
       })
     );
 
-    // ==========================
-    // Status Chart
-    // ==========================
+    // Pie Chart Data
 
     const statusChart = [
       {
@@ -87,7 +85,7 @@ exports.getDashboard = async (req, res) => {
         value: stats.pending,
       },
       {
-        name: "Processing",
+        name: "Under Review",
         value: stats.processing,
       },
       {
@@ -95,30 +93,30 @@ exports.getDashboard = async (req, res) => {
         value: stats.approved,
       },
       {
-        name: "Completed",
-        value: stats.completed,
-      },
-      {
         name: "Rejected",
         value: stats.rejected,
       },
+      {
+        name: "Completed",
+        value: stats.completed,
+      },
     ];
 
-    // ==========================
     // Pending Applications
-    // ==========================
 
-    const pendingApplications = applications
-      .filter((app) =>
-        ["Pending", "Processing"].includes(app.status)
-      )
-      .slice(0, 5);
+    const pendingApplications =
+      applications
+        .filter((app) =>
+          ["Pending", "Under Review"].includes(
+            app.status
+          )
+        )
+        .slice(0, 5);
 
-    // ==========================
     // Latest Messages
-    // ==========================
 
-    const latestMessages = contacts.slice(0, 5);
+    const latestMessages =
+      contacts.slice(0, 5);
 
     res.json({
       stats,
@@ -127,9 +125,8 @@ exports.getDashboard = async (req, res) => {
       pendingApplications,
       latestMessages,
     });
-
   } catch (error) {
-    console.error(error);
+    console.log(error);
 
     res.status(500).json({
       message: error.message,
