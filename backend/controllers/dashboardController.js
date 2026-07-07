@@ -5,11 +5,6 @@ const Testimonial = require("../models/Testimonial");
 
 exports.getDashboard = async (req, res) => {
   try {
-
-    // ===========================
-    // Fetch all collections
-    // ===========================
-
     const [
       applications,
       customers,
@@ -22,41 +17,40 @@ exports.getDashboard = async (req, res) => {
       Testimonial.find().sort({ createdAt: -1 }),
     ]);
 
-    // ===========================
+    // ==========================
     // Dashboard Statistics
-    // ===========================
+    // ==========================
 
     const stats = {
       totalApplications: applications.length,
-
       totalCustomers: customers.length,
-
       totalMessages: contacts.length,
-
       totalTestimonials: testimonials.length,
 
       pending: applications.filter(
-        app => app.status === "Pending"
+        (app) => app.status === "Pending"
       ).length,
 
       processing: applications.filter(
-        app => app.status === "Processing"
+        (app) => app.status === "Processing"
       ).length,
 
       approved: applications.filter(
-        app =>
-          app.status === "Approved" ||
-          app.status === "Completed"
+        (app) => app.status === "Approved"
+      ).length,
+
+      completed: applications.filter(
+        (app) => app.status === "Completed"
       ).length,
 
       rejected: applications.filter(
-        app => app.status === "Rejected"
+        (app) => app.status === "Rejected"
       ).length,
     };
 
-    // ===========================
-    // Monthly Applications Chart
-    // ===========================
+    // ==========================
+    // Monthly Applications
+    // ==========================
 
     const months = [
       "Jan",
@@ -76,18 +70,16 @@ exports.getDashboard = async (req, res) => {
     const monthlyApplications = months.map(
       (month, index) => ({
         month,
-        applications: applications.filter(app => {
-          return (
-            new Date(app.createdAt).getMonth() ===
-            index
-          );
-        }).length,
+        applications: applications.filter(
+          (app) =>
+            new Date(app.createdAt).getMonth() === index
+        ).length,
       })
     );
 
-    // ===========================
+    // ==========================
     // Status Chart
-    // ===========================
+    // ==========================
 
     const statusChart = [
       {
@@ -103,39 +95,30 @@ exports.getDashboard = async (req, res) => {
         value: stats.approved,
       },
       {
+        name: "Completed",
+        value: stats.completed,
+      },
+      {
         name: "Rejected",
         value: stats.rejected,
       },
-
-      {
-        name: "Completed",
-        value: stats.completed,
-      }
     ];
 
-    // ===========================
+    // ==========================
     // Pending Applications
-    // ===========================
+    // ==========================
 
-    const pendingApplications =
-      applications
-        .filter(app =>
-          ["Pending", "Processing"].includes(
-            app.status
-          )
-        )
-        .slice(0, 5);
+    const pendingApplications = applications
+      .filter((app) =>
+        ["Pending", "Processing"].includes(app.status)
+      )
+      .slice(0, 5);
 
-    // ===========================
+    // ==========================
     // Latest Messages
-    // ===========================
+    // ==========================
 
-    const latestMessages =
-      contacts.slice(0, 5);
-
-    // ===========================
-    // Final Response
-    // ===========================
+    const latestMessages = contacts.slice(0, 5);
 
     res.json({
       stats,
@@ -146,12 +129,10 @@ exports.getDashboard = async (req, res) => {
     });
 
   } catch (error) {
-
-    console.log(error);
+    console.error(error);
 
     res.status(500).json({
       message: error.message,
     });
-
   }
 };
