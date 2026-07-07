@@ -131,8 +131,13 @@ exports.getPayments = async (req, res) => {
 // Approve Payment
 // ======================================
 
+// ======================================
+// Approve Payment
+// ======================================
+
 exports.approvePayment = async (req, res) => {
   try {
+
     const payment = await Payment.findById(req.params.id);
 
     if (!payment) {
@@ -141,66 +146,83 @@ exports.approvePayment = async (req, res) => {
       });
     }
 
-    payment.paymentStatus = "Paid";
-
-    payment.paymentDate = new Date();
-
-    payment.verifiedAt = new Date();
-
-    payment.verifiedBy = "Administrator";
-
-
-await payment.save();
-
     const application = await Application.findById(
       payment.application
     );
 
-    const settings = await Settings.findOne();
-
-const receipt = await generateReceipt(
-  payment,
-  application,
-  settings
-);
-console.log("Receipt Object:", receipt);
-
-payment.receiptNumber = receipt.receiptNumber;
-payment.receiptUrl = receipt.fileName;
-console.log("Receipt URL Saved:", payment.receiptUrl);
-payment.receiptGenerated = true;
-
-await payment.save();
-
-    if (application) {
-      application.paymentStatus = "Paid";
-application.paymentLocked = true;
-
-// Payment is verified.
-// Admin can continue processing the application.
-application.status = "Under Review";
-
-application.remarks =
-  "Payment verified successfully. Your application is under processing.";
-      await application.save();
+    if (!application) {
+      return res.status(404).json({
+        message: "Application not found.",
+      });
     }
 
-    res.json({
-      message: "Payment Approved Successfully.",
-      receiptNumber: payment.receiptNumber
+    // ==========================
+    // Approve payment first
+    // ==========================
+
+    payment.paymentStatus = "Paid";
+    payment.paymentDate = new Date();
+    payment.verifiedAt = new Date();
+    payment.verifiedBy = "Administrator";
+
+    application.paymentStatus = "Paid";
+    application.paymentLocked = true;
+
+    application.status = "Under Review";
+
+    application.remarks =
+      "Payment verified successfully. Your application is under processing.";
+
+    await payment.save();
+    await application.save();
+
+    // ==========================
+    // Try generating receipt
+    // ==========================
+
+    try {
+
+      const settings = await Settings.findOne();
+
+      const receipt = await generateReceipt(
+        payment,
+        application,
+        settings
+      );
+
+      payment.receiptNumber = receipt.receiptNumber;
+      payment.receiptUrl = receipt.fileName;
+      payment.receiptGenerated = true;
+
+      await payment.save();
+
+      console.log("Receipt Generated Successfully");
+
+    } catch (receiptError) {
+
+      console.log("Receipt Generation Failed");
+      console.log(receiptError.message);
+
+      // Don't fail payment approval
+    }
+
+    return res.json({
+      success: true,
+      message: "Payment Approved Successfully",
+      payment,
     });
 
   } catch (error) {
 
     console.log(error);
 
-    res.status(500).json({
+    return res.status(500).json({
+      success: false,
       message: error.message,
     });
 
   }
 };
-
 // ======================================
 // Reject Payment
 // ======================================

@@ -34,24 +34,27 @@ function Payments() {
   // ==========================
 
   const approvePayment = async (id) => {
-    try {
+  try {
+    const res = await axios.put(
+      `https://sanvi-business-consultancy.onrender.com/api/payments/approve/${id}`
+    );
 
-      await axios.put(
-        `https://sanvi-business-consultancy.onrender.com/api/payments/approve/${id}`
-      );
+    console.log(res.data);
 
-      alert("Payment Approved Successfully");
+    await loadPayments();
 
-      loadPayments();
+    alert("Payment Approved Successfully");
 
-    } catch (error) {
+  } catch (error) {
 
-      console.log(error);
+    console.log(error.response?.data);
 
-      alert("Unable to approve payment.");
-
-    }
-  };
+    alert(
+      error.response?.data?.message ||
+      "Unable to approve payment."
+    );
+  }
+};
 
   // ==========================
   // Reject Payment

@@ -14,10 +14,13 @@ function PaymentCard({
 }) {
 
   const navigate = useNavigate();
-  const {
-    quotedAmount,
-    paymentStatus,
-  } = application;
+  const paymentStatus =
+  application.payment?.paymentStatus ||
+  application.paymentStatus;
+
+const quotedAmount =
+  application.payment?.amount ||
+  application.quotedAmount;
 
   const renderButton = () => {
     switch (paymentStatus) {
@@ -51,7 +54,8 @@ function PaymentCard({
 
       {/* Receipt Information */}
 
-      {application.payment && (
+      {application.payment &&
+ application.payment.paymentStatus === "Paid" && (
         <div className="bg-slate-50 rounded-xl border p-4">
 
           <div className="flex justify-between mb-2">

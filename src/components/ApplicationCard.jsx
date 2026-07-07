@@ -92,6 +92,7 @@ function ApplicationCard({
 
                 <StatusBadge
                   status={
+                    application.payment?.paymentStatus ||
                     application.paymentStatus ||
                     "Awaiting Quote"
                   }
@@ -107,6 +108,7 @@ function ApplicationCard({
           <ApplicationTimeline
             status={application.status}
             paymentStatus={
+              application.payment?.paymentStatus ||
               application.paymentStatus
             }
           />
