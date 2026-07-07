@@ -125,28 +125,17 @@ function AdminDashboard() {
       }
     };
 
-  const filteredApplications =
-    applications.filter(
-      (app) => {
-        const name =
-          app.name || "";
+  const filteredApplications = applications.filter((application) => {
+  const searchText = search.toLowerCase();
 
-        const mobile =
-          app.phone || "";
-
-        return (
-          name
-            .toLowerCase()
-            .includes(
-              search.toLowerCase()
-            ) ||
-          mobile.includes(
-            search
-          )
-        );
-      }
-    );
-
+  return (
+    (application.name || "").toLowerCase().includes(searchText) ||
+    (application.email || "").toLowerCase().includes(searchText) ||
+    (application.service || "").toLowerCase().includes(searchText) ||
+    (application.mobile || "").includes(search) ||
+    (application.status || "").toLowerCase().includes(searchText)
+  );
+});
   const total =
     applications.length;
 

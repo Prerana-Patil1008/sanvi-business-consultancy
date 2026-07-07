@@ -52,10 +52,10 @@ useEffect(() => {
 
   const filtered = applications.filter((app) => {
     const matchesSearch =
-      app.name.toLowerCase().includes(value) ||
-      app.email.toLowerCase().includes(value) ||
-      app.phone.includes(value) ||
-      app.service.toLowerCase().includes(value);
+  (app.name || "").toLowerCase().includes(value) ||
+  (app.email || "").toLowerCase().includes(value) ||
+  (app.mobile || "").includes(search) ||
+  (app.service || "").toLowerCase().includes(value);
 
     const matchesStatus =
       statusFilter === "All" ||
@@ -238,7 +238,7 @@ const exportToExcel = () => {
   const exportData = filteredApplications.map((app) => ({
     Name: app.name,
     Email: app.email,
-    Phone: app.phone || "-",
+    Phone: app.mobile || "-",
     Service: app.service,
     Status: app.status,
     Remarks: app.remarks || "-",

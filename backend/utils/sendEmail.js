@@ -172,7 +172,7 @@ const sendEmail = async (to, subject, application) => {
             ">
 
               <a
-                href="http://localhost:5173/my-applications"
+                href="https://sanvi-business-consultancy.vercel.app/my-applications"
                 style="
                   background:#2563eb;
                   color:white;
