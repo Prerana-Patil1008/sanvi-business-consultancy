@@ -120,7 +120,7 @@ function ApplicationModal({
       }
 
       await axios.post(
-        "https://sanvi-business-consultancy.onrender.com/api/applications",
+        "http://localhost:5000/api/applications",
         data,
         {
           headers: {
@@ -197,36 +197,36 @@ function ApplicationModal({
           <input
             type="text"
             name="name"
-            placeholder="Full Name"
+            placeholder="Enter Your Full Name"
             required
             value={formData.name}
             onChange={
               handleChange
             }
-            className="w-full border border-gray-300 rounded-2xl p-4 outline-none focus:border-blue-500"
+            className="w-full border rounded-xl p-3 text-slate-800 placeholder:text-gray-400"
           />
 
           <input
             type="email"
             name="email"
-            placeholder="Email Address"
+            placeholder="Enter Email Address"
             value={formData.email}
             onChange={
               handleChange
             }
-            className="w-full border border-gray-300 rounded-2xl p-4 outline-none focus:border-blue-500"
+            className="w-full border rounded-xl p-3 text-slate-800 placeholder:text-gray-400"
           />
 
           <input
             type="text"
             name="mobile"
-            placeholder="Mobile Number"
+            placeholder="Enter Mobile Number"
             required
             value={formData.mobile}
             onChange={
               handleChange
             }
-            className="w-full border border-gray-300 rounded-2xl p-4 outline-none focus:border-blue-500"
+            className="w-full border rounded-xl p-3 text-slate-800 placeholder:text-gray-400"
           />
 
           {/* Upload */}
