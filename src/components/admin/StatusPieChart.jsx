@@ -9,21 +9,23 @@ import {
 
 const COLORS = [
   "#F59E0B", // Pending
-  "#3B82F6", // Processing
+  "#3B82F6", // Under Review
   "#22C55E", // Approved
-  "#10B981", // Completed
   "#EF4444", // Rejected
+  "#8B5CF6", // Completed
 ];
 
 function StatusPieChart({ data }) {
   if (!data) return null;
 
+  // Remove zero-value statuses
   const filteredData = data.filter(
     (item) => item.value > 0
   );
 
   return (
     <div className="bg-white rounded-3xl shadow-sm p-6 h-full">
+
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-slate-800">
           Application Status
@@ -35,8 +37,10 @@ function StatusPieChart({ data }) {
       </div>
 
       {filteredData.length === 0 ? (
-        <div className="flex items-center justify-center h-[320px] text-gray-500">
-          No application data available
+        <div className="flex items-center justify-center h-[320px]">
+          <p className="text-gray-500">
+            No application data available
+          </p>
         </div>
       ) : (
         <ResponsiveContainer width="100%" height={320}>
