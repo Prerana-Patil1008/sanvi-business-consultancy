@@ -33,7 +33,7 @@ function TestimonialForm() {
     try {
 
       const res = await axios.get(
-        `http://localhost:5000/api/applications/${applicationId}`
+        `https://sanvi-business-consultancy.onrender.com/api/applications/${applicationId}`
       );
 
       setApplication(res.data);
@@ -55,7 +55,7 @@ function TestimonialForm() {
     try {
 
       await axios.post(
-        "http://localhost:5000/api/testimonials",
+        "https://sanvi-business-consultancy.onrender.com/api/testimonials",
         {
           customerName: user.name,
           applicationId,

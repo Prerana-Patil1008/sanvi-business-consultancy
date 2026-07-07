@@ -12,7 +12,7 @@ function Customers() {
   const fetchCustomers = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/customers"
+        "https://sanvi-business-consultancy.onrender.com/api/customers"
       );
 
       setCustomers(response.data);
@@ -26,7 +26,7 @@ function Customers() {
   const updateStatus = async (id, status) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/customers/${id}`,
+        `https://sanvi-business-consultancy.onrender.com/api/customers/${id}`,
         { status }
       );
 
@@ -45,7 +45,7 @@ function Customers() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/customers/${id}`
+        `https://sanvi-business-consultancy.onrender.com/api/customers/${id}`
       );
 
       fetchCustomers();

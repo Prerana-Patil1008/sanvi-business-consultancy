@@ -58,7 +58,7 @@ function Reports() {
       setLoading(true);
 
       const res = await axios.get(
-        "http://localhost:5000/api/reports/dashboard"
+        "https://sanvi-business-consultancy.onrender.com/api/reports/dashboard"
       );
 
       setReport(res.data);

@@ -31,7 +31,7 @@ const [openPaymentModal, setOpenPaymentModal] = useState(false);
   const fetchApplications = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/applications/user/${user._id}`
+        `https://sanvi-business-consultancy.onrender.com/api/applications/user/${user._id}`
       );
 
       setApplications(res.data);

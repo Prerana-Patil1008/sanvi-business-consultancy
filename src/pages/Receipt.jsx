@@ -28,7 +28,7 @@ function Receipt() {
   const fetchReceipt = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/payments/${paymentId}`
+        `https://sanvi-business-consultancy.onrender.com/api/payments/${paymentId}`
       );
 
       setPayment(res.data.payment);
@@ -144,7 +144,7 @@ function Receipt() {
                   {settings.logo ? (
 
                     <img
-                      src={`http://localhost:5000/uploads/${settings.logo}`}
+                      src={`https://sanvi-business-consultancy.onrender.com/uploads/${settings.logo}`}
                       alt="Logo"
                       className="w-16 h-16 object-contain"
                     />

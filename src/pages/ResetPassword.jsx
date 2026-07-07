@@ -66,7 +66,7 @@ function ResetPassword() {
     try {
 
       const res = await axios.post(
-        "http://localhost:5000/api/auth/reset-password",
+        "https://sanvi-business-consultancy.onrender.com/api/auth/reset-password",
         {
           email,
           otp,

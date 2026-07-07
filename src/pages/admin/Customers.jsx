@@ -56,7 +56,7 @@ const loadCustomers = async () => {
     setLoading(true);
 
     const res = await axios.get(
-      "http://localhost:5000/api/users"
+      "https://sanvi-business-consultancy.onrender.com/api/users"
     );
 
     setCustomers(res.data);
@@ -84,7 +84,7 @@ const deleteCustomer = async (id) => {
   try {
 
     await axios.delete(
-      `http://localhost:5000/api/users/${id}`
+      `https://sanvi-business-consultancy.onrender.com/api/users/${id}`
     );
 
     loadCustomers();

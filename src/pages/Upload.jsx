@@ -30,7 +30,7 @@ function Upload() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/customers",
+        "https://sanvi-business-consultancy.onrender.com/api/customers",
         {
           name: formData.name,
           mobile: formData.mobile,

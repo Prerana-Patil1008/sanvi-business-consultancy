@@ -17,7 +17,7 @@ function TestimonialDetails() {
   const loadTestimonial = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/testimonials/${id}`
+        `https://sanvi-business-consultancy.onrender.com/api/testimonials/${id}`
       );
 
       setTestimonial(res.data);

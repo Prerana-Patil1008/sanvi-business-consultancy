@@ -20,7 +20,7 @@ function Footer() {
   const fetchSettings = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/settings"
+        "https://sanvi-business-consultancy.onrender.com/api/settings"
       );
 
       setSettings(res.data);

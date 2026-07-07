@@ -25,7 +25,7 @@ function Profile() {
   const saveProfile = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/users/${user._id}`,
+        `https://sanvi-business-consultancy.onrender.com/api/users/${user._id}`,
         formData
       );
 

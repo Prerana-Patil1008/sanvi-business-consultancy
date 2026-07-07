@@ -37,7 +37,7 @@ function PaymentModal({
     try {
 
       const res = await axios.get(
-        "http://localhost:5000/api/payment-settings"
+        "https://sanvi-business-consultancy.onrender.com/api/payment-settings"
       );
 
       setSettings(res.data);
@@ -108,7 +108,7 @@ function PaymentModal({
       );
 
       await axios.post(
-        "http://localhost:5000/api/payments/upload",
+        "https://sanvi-business-consultancy.onrender.com/api/payments/upload",
         data,
         {
           headers: {
@@ -230,7 +230,7 @@ function PaymentModal({
             {settings?.qrImage ? (
 
               <img
-                src={`http://localhost:5000/uploads/payments/${settings.qrImage}`}
+                src={`https://sanvi-business-consultancy.onrender.com/uploads/payments/${settings.qrImage}`}
                 alt="QR Code"
                 className="w-64 h-64 mx-auto border rounded-2xl shadow"
               />

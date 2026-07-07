@@ -72,7 +72,7 @@ const loadServices = async () => {
     setLoading(true);
 
     const res = await axios.get(
-      "http://localhost:5000/api/services"
+      "https://sanvi-business-consultancy.onrender.com/api/services"
     );
 
     setServices(res.data);
@@ -100,7 +100,7 @@ const deleteService = async (id) => {
   try {
 
     await axios.delete(
-      `http://localhost:5000/api/services/${id}`
+      `https://sanvi-business-consultancy.onrender.com/api/services/${id}`
     );
 
     loadServices();
@@ -122,7 +122,7 @@ const saveService = async () => {
     if (selectedService) {
 
       await axios.put(
-        `http://localhost:5000/api/services/${selectedService._id}`,
+        `https://sanvi-business-consultancy.onrender.com/api/services/${selectedService._id}`,
         formData
       );
 
@@ -131,7 +131,7 @@ const saveService = async () => {
     } else {
 
       await axios.post(
-        "http://localhost:5000/api/services",
+        "https://sanvi-business-consultancy.onrender.com/api/services",
         formData
       );
 

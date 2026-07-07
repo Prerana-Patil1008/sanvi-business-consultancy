@@ -36,7 +36,7 @@
 
 //     try {
 //       await axios.post(
-//         "http://localhost:5000/api/auth/register",
+//         "https://sanvi-business-consultancy.onrender.com/api/auth/register",
 //         {
 //           name: formData.name,
 //           email: formData.email,
@@ -293,7 +293,7 @@ function Register() {
     try {
       // Sending additional fields to your backend pipeline safely
       await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "https://sanvi-business-consultancy.onrender.com/api/auth/register",
         {
           name: formData.name,
           email: formData.email,

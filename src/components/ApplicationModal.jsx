@@ -120,7 +120,7 @@ function ApplicationModal({
       }
 
       await axios.post(
-        "http://localhost:5000/api/applications",
+        "https://sanvi-business-consultancy.onrender.com/api/applications",
         data,
         {
           headers: {

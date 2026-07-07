@@ -22,7 +22,7 @@ function Dashboard() {
   const fetchDashboard = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/dashboard"
+        "https://sanvi-business-consultancy.onrender.com/api/dashboard"
       );
 
       setDashboard(res.data);

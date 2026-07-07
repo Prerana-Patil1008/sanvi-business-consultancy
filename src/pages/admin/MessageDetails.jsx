@@ -17,7 +17,7 @@ function MessageDetails() {
   const loadMessage = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/contacts/${id}`
+        `https://sanvi-business-consultancy.onrender.com/api/contacts/${id}`
       );
 
       setMessage(res.data);

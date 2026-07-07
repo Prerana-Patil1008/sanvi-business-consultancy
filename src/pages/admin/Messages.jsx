@@ -55,7 +55,7 @@
 //       setLoading(true);
 
 //       const res = await axios.get(
-//         "http://localhost:5000/api/contacts"
+//         "https://sanvi-business-consultancy.onrender.com/api/contacts"
 //       );
 
 //       setMessages(res.data);
@@ -80,7 +80,7 @@
 //     try {
 
 //       await axios.delete(
-//         `http://localhost:5000/api/contacts/${id}`
+//         `https://sanvi-business-consultancy.onrender.com/api/contacts/${id}`
 //       );
 
 //       loadMessages();
@@ -100,7 +100,7 @@
 //     try {
 
 //       await axios.put(
-//         `http://localhost:5000/api/contacts/${id}`
+//         `https://sanvi-business-consultancy.onrender.com/api/contacts/${id}`
 //       );
 
 //       loadMessages();
@@ -547,7 +547,7 @@ function Messages() {
       setLoading(true);
 
       const res = await axios.get(
-        "http://localhost:5000/api/contacts"
+        "https://sanvi-business-consultancy.onrender.com/api/contacts"
       );
 
       setMessages(res.data);
@@ -578,7 +578,7 @@ function Messages() {
     try {
 
       await axios.delete(
-        `http://localhost:5000/api/contacts/${id}`
+        `https://sanvi-business-consultancy.onrender.com/api/contacts/${id}`
       );
 
       loadMessages();
@@ -602,7 +602,7 @@ function Messages() {
     try {
 
       await axios.put(
-        `http://localhost:5000/api/contacts/${id}`
+        `https://sanvi-business-consultancy.onrender.com/api/contacts/${id}`
       );
 
       loadMessages();

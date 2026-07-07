@@ -30,7 +30,7 @@ function Contact() {
 
   const loadSettings = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/settings");
+      const res = await axios.get("https://sanvi-business-consultancy.onrender.com/api/settings");
       setSettings(res.data);
     } catch (error) {
       console.log(error);
@@ -47,7 +47,7 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/contacts", formData);
+      await axios.post("https://sanvi-business-consultancy.onrender.com/api/contacts", formData);
       alert("Message Sent Successfully");
       setFormData({
         name: "",

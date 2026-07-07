@@ -24,7 +24,7 @@ function PaymentSettings() {
   const loadSettings = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/payment-settings"
+        "https://sanvi-business-consultancy.onrender.com/api/payment-settings"
       );
 
       setFormData({
@@ -41,7 +41,7 @@ function PaymentSettings() {
 
       if (res.data.qrImage) {
         setQrPreview(
-          `http://localhost:5000/uploads/payments/${res.data.qrImage}`
+          `https://sanvi-business-consultancy.onrender.com/uploads/payments/${res.data.qrImage}`
         );
       }
 
@@ -116,7 +116,7 @@ function PaymentSettings() {
       }
 
       await axios.put(
-        "http://localhost:5000/api/payment-settings",
+        "https://sanvi-business-consultancy.onrender.com/api/payment-settings",
         data,
         {
           headers: {

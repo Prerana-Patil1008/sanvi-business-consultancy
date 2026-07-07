@@ -50,7 +50,7 @@ function Testimonials() {
       setLoading(true);
 
       const res = await axios.get(
-        "http://localhost:5000/api/testimonials/all"
+        "https://sanvi-business-consultancy.onrender.com/api/testimonials/all"
       );
 
       setTestimonials(res.data);
@@ -74,7 +74,7 @@ function Testimonials() {
     try {
 
       await axios.put(
-        `http://localhost:5000/api/testimonials/${id}`,
+        `https://sanvi-business-consultancy.onrender.com/api/testimonials/${id}`,
         { status }
       );
 
@@ -96,7 +96,7 @@ function Testimonials() {
     try {
 
       await axios.delete(
-        `http://localhost:5000/api/testimonials/${id}`
+        `https://sanvi-business-consultancy.onrender.com/api/testimonials/${id}`
       );
 
       loadTestimonials();

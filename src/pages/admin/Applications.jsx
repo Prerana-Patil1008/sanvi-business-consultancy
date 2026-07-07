@@ -88,7 +88,7 @@ const loadApplications = async () => {
     setLoading(true);
 
     const res = await axios.get(
-      "http://localhost:5000/api/applications"
+      "https://sanvi-business-consultancy.onrender.com/api/applications"
     );
 
     setApplications(res.data);
@@ -119,7 +119,7 @@ const deleteApplication = async (id) => {
   try {
 
     await axios.delete(
-      `http://localhost:5000/api/applications/${id}`
+      `https://sanvi-business-consultancy.onrender.com/api/applications/${id}`
     );
 
     loadApplications();
@@ -145,7 +145,7 @@ const sendQuote = async () => {
     setSendingQuote(true);
 
     await axios.put(
-      `http://localhost:5000/api/applications/${selectedApplication._id}/quote`,
+      `https://sanvi-business-consultancy.onrender.com/api/applications/${selectedApplication._id}/quote`,
       {
         quotedAmount,
       }
@@ -177,7 +177,7 @@ const updateApplication = async () => {
   try {
 
     await axios.put(
-      `http://localhost:5000/api/applications/${selectedApplication._id}`,
+      `https://sanvi-business-consultancy.onrender.com/api/applications/${selectedApplication._id}`,
       {
         status,
         remarks,
@@ -546,7 +546,7 @@ const exportToExcel = () => {
 
                       <a
                         key={index}
-                        href={`http://localhost:5000/uploads/${doc}`}
+                        href={`https://sanvi-business-consultancy.onrender.com/uploads/${doc}`}
                         target="_blank"
                         rel="noreferrer"
                         className="block text-blue-600 hover:underline"

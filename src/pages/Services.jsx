@@ -27,7 +27,7 @@ function Services() {
   const loadServices = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/services"
+        "https://sanvi-business-consultancy.onrender.com/api/services"
       );
 
       setServices(res.data);

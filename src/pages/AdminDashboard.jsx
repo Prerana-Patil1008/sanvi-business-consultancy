@@ -67,7 +67,7 @@ function AdminDashboard() {
       try {
         const res =
           await axios.get(
-            "http://localhost:5000/api/applications"
+            "https://sanvi-business-consultancy.onrender.com/api/applications"
           );
 
         setApplications(
@@ -86,7 +86,7 @@ function AdminDashboard() {
     ) => {
       try {
         await axios.put(
-          `http://localhost:5000/api/applications/${id}`,
+          `https://sanvi-business-consultancy.onrender.com/api/applications/${id}`,
           {
             status,
             remarks:
@@ -116,7 +116,7 @@ function AdminDashboard() {
 
       try {
         await axios.delete(
-          `http://localhost:5000/api/applications/${id}`
+          `https://sanvi-business-consultancy.onrender.com/api/applications/${id}`
         );
 
         fetchApplications();
@@ -364,7 +364,7 @@ function AdminDashboard() {
 
                                 <div className="flex gap-3 mt-3">
                                   <a
-                                    href={`http://localhost:5000/uploads/${doc}`}
+                                    href={`https://sanvi-business-consultancy.onrender.com/uploads/${doc}`}
                                     target="_blank"
                                     rel="noreferrer"
                                     className="bg-blue-500 text-white px-3 py-2 rounded-lg"
@@ -373,7 +373,7 @@ function AdminDashboard() {
                                   </a>
 
                                   <a
-                                    href={`http://localhost:5000/download/${doc}`}
+                                    href={`https://sanvi-business-consultancy.onrender.com/download/${doc}`}
                                     className="bg-green-500 text-white px-3 py-2 rounded-lg"
                                   >
                                     Download

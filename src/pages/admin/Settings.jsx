@@ -54,7 +54,7 @@ function Settings() {
       setLoading(true);
 
       const res = await axios.get(
-        "http://localhost:5000/api/settings"
+        "https://sanvi-business-consultancy.onrender.com/api/settings"
       );
 
       setFormData(res.data);
@@ -94,7 +94,7 @@ function Settings() {
       setSaving(true);
 
       await axios.put(
-        "http://localhost:5000/api/settings",
+        "https://sanvi-business-consultancy.onrender.com/api/settings",
         formData
       );
 

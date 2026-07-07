@@ -150,7 +150,7 @@ function ApplicationCard({
 
                     <a
                       key={index}
-                      href={`http://localhost:5000/uploads/${doc}`}
+                      href={`https://sanvi-business-consultancy.onrender.com/uploads/${doc}`}
                       target="_blank"
                       rel="noreferrer"
                       className="px-5 py-3 rounded-xl bg-slate-100 hover:bg-blue-100 transition font-medium"

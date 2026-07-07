@@ -95,7 +95,7 @@ function VerifyOTP() {
     try {
 
       const res = await axios.post(
-        "http://localhost:5000/api/auth/verify-otp",
+        "https://sanvi-business-consultancy.onrender.com/api/auth/verify-otp",
         {
           email,
           otp: enteredOTP,
@@ -131,7 +131,7 @@ function VerifyOTP() {
     try {
 
       await axios.post(
-        "http://localhost:5000/api/auth/forgot-password",
+        "https://sanvi-business-consultancy.onrender.com/api/auth/forgot-password",
         {
           email,
         }

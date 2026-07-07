@@ -17,7 +17,7 @@ function Payments() {
   const loadPayments = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/payments"
+        "https://sanvi-business-consultancy.onrender.com/api/payments"
       );
 
       setPayments(res.data);
@@ -37,7 +37,7 @@ function Payments() {
     try {
 
       await axios.put(
-        `http://localhost:5000/api/payments/approve/${id}`
+        `https://sanvi-business-consultancy.onrender.com/api/payments/approve/${id}`
       );
 
       alert("Payment Approved Successfully");
@@ -61,7 +61,7 @@ function Payments() {
     try {
 
       await axios.put(
-        `http://localhost:5000/api/payments/reject/${selectedPayment._id}`,
+        `https://sanvi-business-consultancy.onrender.com/api/payments/reject/${selectedPayment._id}`,
         {
           remarks,
         }
@@ -209,7 +209,7 @@ function Payments() {
                   {payment.screenshot ? (
 
                     <a
-                      href={`http://localhost:5000/uploads/payments/${payment.screenshot}`}
+                      href={`https://sanvi-business-consultancy.onrender.com/uploads/payments/${payment.screenshot}`}
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-600 hover:underline"
