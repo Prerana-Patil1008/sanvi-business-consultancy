@@ -5,13 +5,11 @@ const Testimonial = require("../models/Testimonial");
 
 exports.getDashboardReport = async (req, res) => {
   try {
-
     // ==========================
     // Dashboard Counts
     // ==========================
 
-    const totalCustomers =
-      await User.countDocuments();
+    const totalCustomers = await User.countDocuments();
 
     const totalApplications =
       await Application.countDocuments();
@@ -29,6 +27,16 @@ exports.getDashboardReport = async (req, res) => {
     const rejectedApplications =
       await Application.countDocuments({
         status: "Rejected",
+      });
+
+    const underReviewApplications =
+      await Application.countDocuments({
+        status: "Under Review",
+      });
+
+    const completedApplications =
+      await Application.countDocuments({
+        status: "Completed",
       });
 
     const totalServices =
@@ -104,7 +112,6 @@ exports.getDashboardReport = async (req, res) => {
     // ==========================
 
     res.json({
-
       totalCustomers,
 
       totalApplications,
@@ -115,6 +122,10 @@ exports.getDashboardReport = async (req, res) => {
 
       rejectedApplications,
 
+      underReviewApplications,
+
+      completedApplications,
+
       totalServices,
 
       totalTestimonials,
@@ -124,16 +135,12 @@ exports.getDashboardReport = async (req, res) => {
       monthlyApplications,
 
       recentApplications,
-
     });
-
   } catch (error) {
-
     console.log(error);
 
     res.status(500).json({
       message: error.message,
     });
-
   }
 };
