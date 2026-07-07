@@ -128,47 +128,36 @@ function Reports() {
   };
 
   const pieData = {
+  labels: [
+    "Approved",
+    "Pending",
+    "Under Review",
+    "Completed",
+    "Rejected",
+  ],
 
-    labels: [
+  datasets: [
+    {
+      data: [
+        report.approvedApplications,
+        report.pendingApplications,
+        report.underReviewApplications,
+        report.completedApplications,
+        report.rejectedApplications,
+      ],
 
-      "Approved",
+      backgroundColor: [
+        "#16a34a", // Approved
+        "#f59e0b", // Pending
+        "#3b82f6", // Under Review
+        "#8b5cf6", // Completed
+        "#dc2626", // Rejected
+      ],
 
-      "Pending",
-
-      "Rejected",
-
-    ],
-
-    datasets: [
-
-      {
-
-        data: [
-
-          report.approvedApplications,
-
-          report.pendingApplications,
-
-          report.rejectedApplications,
-
-        ],
-
-        backgroundColor: [
-
-          "#16a34a",
-
-          "#f59e0b",
-
-          "#dc2626",
-
-        ],
-
-      },
-
-    ],
-
-  };
-
+      borderWidth: 1,
+    },
+  ],
+};
   return (
 
     <AdminLayout>
@@ -277,11 +266,20 @@ function Reports() {
             Application Status
           </h2>
 
-          <div className="max-w-sm mx-auto">
-
-            <Pie data={pieData} />
-
-          </div>
+          <div className="max-w-md mx-auto">
+  <Pie
+    data={pieData}
+    options={{
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: {
+          position: "bottom",
+        },
+      },
+    }}
+  />
+</div>
 
         </div>
 
