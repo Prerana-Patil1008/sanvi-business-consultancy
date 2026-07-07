@@ -1,0 +1,33 @@
+@media print {
+
+  body {
+    background: white !important;
+  }
+
+  .print-hide {
+    display: none !important;
+  }
+
+  .shadow-2xl {
+    box-shadow: none !important;
+  }
+
+  .rounded-3xl,
+  .rounded-2xl {
+    border-radius: 0 !important;
+  }
+
+  .min-h-screen {
+    min-height: auto !important;
+    padding: 0 !important;
+  }
+
+  .max-w-5xl {
+    max-width: 100% !important;
+  }
+
+  footer {
+    page-break-inside: avoid;
+  }
+
+}
