@@ -46,57 +46,46 @@ function Dashboard() {
   }
 
   return (
-    <AdminLayout>
+  <AdminLayout>
 
-      
+    <DashboardStats
+      stats={dashboard.stats}
+    />
 
-     
+    <div className="grid lg:grid-cols-3 gap-6 mt-8">
 
-      <div className="grid lg:grid-cols-3 gap-6 mt-8">
-
-        <div className="lg:col-span-2">
-
-          <MonthlyChart
-            data={dashboard.monthlyApplications}
-          />
-
-        </div>
-
-        <div>
-
-          <StatusPieChart
-            data={dashboard.statusChart}
-          />
-
-        </div>
-
+      <div className="lg:col-span-2">
+        <MonthlyChart
+          data={dashboard.monthlyApplications}
+        />
       </div>
 
-      <div className="mt-8">
+      <div>
+        <StatusPieChart
+          data={dashboard.statusChart}
+        />
+      </div>
 
-  <PendingApplications
-    applications={dashboard.pendingApplications}
-  />
+    </div>
 
-</div>
+    <div className="mt-8">
+      <PendingApplications
+        applications={dashboard.pendingApplications}
+      />
+    </div>
 
-<div className="mt-8">
+    <div className="mt-8">
+      <LatestMessages
+        messages={dashboard.latestMessages}
+      />
+    </div>
 
-  <LatestMessages
-    messages={dashboard.latestMessages}
-  />
+    <div className="mt-8">
+      <QuickActions />
+    </div>
 
-</div>
-
-<div className="mt-8">
-
-  <QuickActions />
-
-</div>
-
-     
-    </AdminLayout>
-  );
+  </AdminLayout>
+);
 }
 
 export default Dashboard;
