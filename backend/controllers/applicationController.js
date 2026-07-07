@@ -5,10 +5,14 @@ const { sendEmail } = require("../utils/sendEmail");
 // ======================================
 // Create Application
 // ======================================
+// ======================================
+// Create Application
+// ======================================
+
 exports.createApplication = async (req, res) => {
   try {
     const files = req.files
-      ? req.files.map((file) => file.filename)
+      ? req.files.map(file => file.filename)
       : [];
 
     const application = await Application.create({
@@ -21,35 +25,32 @@ exports.createApplication = async (req, res) => {
       documents: files,
     });
 
-    // Send email without failing the API
-    if (application.email) {
-      try {
-        await sendEmail(
-          application.email,
-          "Application Submitted Successfully",
-          application
-        );
-
-        console.log("Confirmation email sent.");
-      } catch (emailError) {
-        console.error(
-          "Email sending failed:",
-          emailError.message
-        );
-      }
-    }
-
-    return res.status(201).json({
+    // Send response immediately
+    res.status(201).json({
       success: true,
       message: "Application submitted successfully.",
       application,
     });
 
-  } catch (error) {
-    console.error("Create Application Error:");
-    console.error(error);
+    // Send email in background
+    if (application.email) {
+      sendEmail(
+        application.email,
+        "Application Submitted Successfully",
+        application
+      )
+        .then(() => {
+          console.log("Application email sent.");
+        })
+        .catch((err) => {
+          console.error("Email Error:", err.message);
+        });
+    }
 
-    return res.status(500).json({
+  } catch (error) {
+    console.error("Create Application Error:", error);
+
+    res.status(500).json({
       success: false,
       message: error.message,
     });
@@ -224,12 +225,18 @@ exports.updateApplication = async (req, res) => {
 
     // Send Status Update Email
     if (application.email) {
-      await sendEmail(
-        application.email,
-        "Application Status Updated",
-        application
-      );
-    }
+  sendEmail(
+    application.email,
+    "Application Status Updated",
+    application
+  )
+    .then(() => {
+      console.log("Status email sent.");
+    })
+    .catch((err) => {
+      console.error("Status Email Error:", err.message);
+    });
+}
 
     res.json({
       message: "Application updated successfully.",
