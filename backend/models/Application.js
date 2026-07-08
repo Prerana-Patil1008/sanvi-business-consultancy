@@ -30,7 +30,12 @@ const applicationSchema = new mongoose.Schema(
       type: String,
       trim: true,
       required: true,
-      match: [/^[0-9]{10}$/, "Invalid mobile number"],
+      validate: {
+  validator: function (v) {
+    return /^[6-9]\d{9}$/.test(v);
+  },
+  message: "Enter a valid 10-digit Indian mobile number",
+},
     },
 
     message: {

@@ -5,9 +5,6 @@ const { sendEmail } = require("../utils/sendEmail");
 // ======================================
 // Create Application
 // ======================================
-// ======================================
-// Create Application
-// ======================================
 
 exports.createApplication = async (req, res) => {
   try {
@@ -15,17 +12,23 @@ exports.createApplication = async (req, res) => {
       ? req.files.map(file => file.filename)
       : [];
 
+    // Clean mobile number
+    let mobile = (req.body.mobile || "")
+      .replace(/\D/g, "")   // remove spaces, +, -
+      .replace(/^91/, "")   // remove country code
+      .replace(/^0/, "");   // remove leading zero
+
     const application = await Application.create({
       user: req.body.user,
       service: req.body.service,
       name: req.body.name,
       email: req.body.email,
-      mobile: req.body.mobile,
+      mobile,
       message: req.body.message,
       documents: files,
     });
 
-    // Send response immediately
+    // Return response immediately
     res.status(201).json({
       success: true,
       message: "Application submitted successfully.",
@@ -48,7 +51,8 @@ exports.createApplication = async (req, res) => {
     }
 
   } catch (error) {
-    console.error("Create Application Error:", error);
+    console.error("Create Application Error:");
+    console.error(error);
 
     res.status(500).json({
       success: false,
@@ -56,6 +60,7 @@ exports.createApplication = async (req, res) => {
     });
   }
 };
+
 // ======================================
 // Get All Applications
 // ======================================
